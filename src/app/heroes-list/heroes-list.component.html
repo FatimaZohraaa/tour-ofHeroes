@@ -1,1 +1,13 @@
-<p>heroes-list works!</p>
+<ul>
+  <li *ngFor="let hero of heroesList">
+    <p [ngStyle]="{ display: 'inline' }" (click)="navigateToHero(hero.id)">
+      {{ hero.id }} - {{ hero.name }}
+    </p>
+    <button (click)="deleteHeroHandler(hero.id)">Delete</button>
+  </li>
+  <form (ngSubmit)="onAdd()" #f="ngForm">
+    <input ngModel name="addedHero" #addedHero="ngModel" required />
+    <!-- <span *ngIf="!addedHero.valid">Cannot add empty name!</span> -->
+    <button type="submit" [disabled]="!f.valid">Add hero</button>
+  </form>
+</ul>

@@ -1,1 +1,15 @@
-<p>details works!</p>
+<h3>{{ editedName }} Details</h3>
+
+<form (ngSubmit)="onSubmit()" #f="ngForm">
+  <input
+    [(ngModel)]="editedName"
+    name="heroName"
+    required
+    #heroName="ngModel"
+  />
+  <span *ngIf="!heroName.valid"> Please Enter a valid Name !</span>
+
+  <p>id: {{ detailsId }}</p>
+  <button (click)="navigateBack()">Go back</button>
+  <button type="submit" [disabled]="!f.valid">Edit</button>
+</form>

@@ -9,6 +9,7 @@ import { DetailsComponent } from './details/details.component';
 
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
@@ -23,7 +24,12 @@ const appRoutes: Routes = [
     DashboardComponent,
     DetailsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

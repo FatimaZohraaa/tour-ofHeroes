@@ -1,1 +1,5 @@
-<p>dashboard works!</p>
+<ul>
+  <li *ngFor="let hero of topHeroes" (click)="navigateToHero(hero.id)">
+    {{ hero.name }}
+  </li>
+</ul>
