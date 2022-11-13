@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HeroesDataService } from '../heroes-data.service';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
-
+import { MessagesService } from '../messages.service';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -15,7 +15,8 @@ export class DetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private heroesDataService: HeroesDataService,
-    private location: Location
+    private location: Location,
+    private messagesService: MessagesService
   ) {}
 
   detailsId: string;
@@ -34,13 +35,13 @@ export class DetailsComponent implements OnInit {
     this.location.back();
   }
 
-  onSubmit() {
+  onEdit() {
     console.log(this.editHeroForm.value);
     this.heroesDataService.editHero({
       name: this.editHeroForm.value.heroName,
       id: this.detailsId,
     });
-    this.heroesDataService.addMessage(`updated hero id ${this.detailsId}`);
+    this.messagesService.addMessage(`updated hero id ${this.detailsId}`);
 
     this.navigateBack();
   }

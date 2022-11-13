@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroesDataService } from '../heroes-data.service';
 import { Router } from '@angular/router';
-
+import { MessagesService } from '../messages.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   constructor(
     private heroesDataService: HeroesDataService,
-    private router: Router
+    private router: Router,
+    private messagesService: MessagesService
   ) {}
 
   topHeroes = [];
@@ -21,6 +22,6 @@ export class DashboardComponent implements OnInit {
 
   navigateToHero(id: string) {
     this.router.navigate([`./heroes/hero/${id}`]);
-    this.heroesDataService.addMessage(`fetched hero id ${id}`);
+    this.messagesService.addMessage(`fetched hero id ${id}`);
   }
 }

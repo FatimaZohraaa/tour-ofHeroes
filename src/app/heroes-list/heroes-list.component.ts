@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HeroesDataService } from '../heroes-data.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
+import { MessagesService } from '../messages.service';
 @Component({
   selector: 'app-heroes-list',
   templateUrl: './heroes-list.component.html',
@@ -15,22 +15,23 @@ export class HeroesListComponent implements OnInit {
 
   constructor(
     private heroesDataService: HeroesDataService,
-    private router: Router
+    private router: Router,
+    private messagesService: MessagesService
   ) {}
 
   ngOnInit(): void {
     this.heroesList = this.heroesDataService.heroesList;
   }
 
-  deleteHeroHandler(id: string) {
+  onDelete(id: string) {
     this.heroesDataService.deleteHero(id);
-    this.heroesDataService.addMessage(`deleted hero id ${id}`);
+    this.messagesService.addMessage(`deleted hero id ${id}`);
     this.heroesList = this.heroesDataService.heroesList;
   }
 
   navigateToHero(id: string) {
     this.router.navigate([`./heroes/hero/${id}`]);
-    this.heroesDataService.addMessage(`fetched hero id ${id}`);
+    this.messagesService.addMessage(`fetched hero id ${id}`);
   }
 
   onAdd() {
@@ -47,7 +48,7 @@ export class HeroesListComponent implements OnInit {
     });
     this.heroesList = this.heroesDataService.heroesList;
     this.addHeroForm.reset();
-    this.heroesDataService.addMessage(
+    this.messagesService.addMessage(
       `added hero with id ${+this.heroesDataService.heroesList.slice(-1)[0].id}`
     );
   }
