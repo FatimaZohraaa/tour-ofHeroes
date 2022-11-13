@@ -5,3 +5,8 @@
 
 <router-outlet></router-outlet>
 <h2>Messages</h2>
+<ul>
+  <li class="list-group-item" *ngFor="let message of messages">
+    {{ message }}
+  </li>
+</ul>

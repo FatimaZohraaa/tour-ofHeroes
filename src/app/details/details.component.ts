@@ -40,6 +40,8 @@ export class DetailsComponent implements OnInit {
       name: this.editHeroForm.value.heroName,
       id: this.detailsId,
     });
+    this.heroesDataService.addMessage(`updated hero id ${this.detailsId}`);
+
     this.navigateBack();
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { HeroesDataService } from './heroes-data.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,13 +8,24 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'tour-of-heroes';
+  messages = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private heroesDataService: HeroesDataService
+  ) {}
+
+  ngOnInit() {
+    this.messages = this.heroesDataService.messages;
+  }
   dashboardNavigate() {
     this.router.navigate(['/']);
+    this.heroesDataService.addMessage(`fetched dashboard`);
   }
 
   heroesListNavigate() {
     this.router.navigate(['/heroes']);
+    this.heroesDataService.addMessage(`fetched heroes`);
+    this.messages = this.heroesDataService.messages;
   }
 }

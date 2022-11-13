@@ -21,5 +21,6 @@ export class DashboardComponent implements OnInit {
 
   navigateToHero(id: string) {
     this.router.navigate([`./heroes/hero/${id}`]);
+    this.heroesDataService.addMessage(`fetched hero id ${id}`);
   }
 }

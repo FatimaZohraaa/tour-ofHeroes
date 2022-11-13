@@ -10,6 +10,6 @@
   <span *ngIf="!heroName.valid"> Please Enter a valid Name !</span>
 
   <p>id: {{ detailsId }}</p>
-  <button (click)="navigateBack()">Go back</button>
+  <button type="button" (click)="navigateBack()">Go back</button>
   <button type="submit" [disabled]="!f.valid">Edit</button>
 </form>

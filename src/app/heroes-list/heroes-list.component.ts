@@ -22,11 +22,13 @@ export class HeroesListComponent implements OnInit {
 
   deleteHeroHandler(id: string) {
     this.heroesDataService.deleteHero(id);
+    this.heroesDataService.addMessage(`deleted hero id ${id}`);
     this.heroesList = this.heroesDataService.heroesList;
   }
 
   navigateToHero(id: string) {
     this.router.navigate([`./heroes/hero/${id}`]);
+    this.heroesDataService.addMessage(`fetched hero id ${id}`);
   }
 
   onAdd() {
@@ -36,5 +38,8 @@ export class HeroesListComponent implements OnInit {
     });
     this.heroesList = this.heroesDataService.heroesList;
     this.addHeroForm.reset();
+    this.heroesDataService.addMessage(
+      `added hero with id ${+this.heroesDataService.heroesList.slice(-1)[0].id}`
+    );
   }
 }
