@@ -1,5 +1,11 @@
-<ul>
-  <li *ngFor="let hero of topHeroes" (click)="navigateToHero(hero.id)">
+<h4>Top Heroes</h4>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button
+    type="button"
+    class="btn btn-light btn-lg"
+    *ngFor="let hero of topHeroes"
+    (click)="navigateToHero(hero.id)"
+  >
     {{ hero.name }}
-  </li>
-</ul>
+  </button>
+</div>

@@ -19,6 +19,7 @@ export class HeroesDataService {
 
   addHero(hero: { name: string; id: string }) {
     this.heroesList = [...this.heroesList, hero];
+    console.log(hero);
   }
 
   deleteHero(id: string) {

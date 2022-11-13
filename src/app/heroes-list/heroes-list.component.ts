@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 export class HeroesListComponent implements OnInit {
   @ViewChild('f') addHeroForm: NgForm;
   heroesList = [];
+  newId: string;
+
   constructor(
     private heroesDataService: HeroesDataService,
     private router: Router
@@ -32,9 +34,16 @@ export class HeroesListComponent implements OnInit {
   }
 
   onAdd() {
+    if (this.heroesDataService.heroesList.length == 0) {
+      this.newId = '1';
+    } else {
+      this.newId = (
+        +this.heroesDataService.heroesList.slice(-1)[0].id + 1
+      ).toString();
+    }
     this.heroesDataService.addHero({
       name: this.addHeroForm.value.addedHero,
-      id: (+this.heroesDataService.heroesList.slice(-1)[0].id + 1).toString(),
+      id: this.newId,
     });
     this.heroesList = this.heroesDataService.heroesList;
     this.addHeroForm.reset();

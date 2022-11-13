@@ -1,0 +1,19 @@
+.btn {
+  border-radius: 0;
+}
+
+.btn-light {
+  margin: 30px 20px 50px 0px;
+}
+
+.li {
+  margin-bottom: 3px;
+}
+
+ul {
+  margin-bottom: 30px;
+}
+
+.container-sm {
+  margin-bottom: 50px;
+}

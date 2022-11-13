@@ -1,15 +1,35 @@
-<h3>{{ editedName }} Details</h3>
+<h4>{{ editedName }} Details</h4>
 
 <form (ngSubmit)="onSubmit()" #f="ngForm">
-  <input
-    [(ngModel)]="editedName"
-    name="heroName"
-    required
-    #heroName="ngModel"
-  />
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+
+    <input
+      type="text"
+      class="form-control"
+      aria-label="Sizing example input"
+      aria-describedby="inputGroup-sizing-default"
+      [(ngModel)]="editedName"
+      name="heroName"
+      required
+      #heroName="ngModel"
+    />
+  </div>
+
   <span *ngIf="!heroName.valid"> Please Enter a valid Name !</span>
 
-  <p>id: {{ detailsId }}</p>
-  <button type="button" (click)="navigateBack()">Go back</button>
-  <button type="submit" [disabled]="!f.valid">Edit</button>
+  <p [ngStyle]="{ marginTop: '20px' }">id: {{ detailsId }}</p>
+
+  <div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button type="button" class="btn btn-outline-dark" (click)="navigateBack()">
+      Back
+    </button>
+    <button
+      type="submit"
+      class="btn btn-outline-dark"
+      [disabled]="!f.valid || heroDetails.name == editedName"
+    >
+      Save
+    </button>
+  </div>
 </form>

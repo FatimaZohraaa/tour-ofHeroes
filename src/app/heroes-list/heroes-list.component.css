@@ -1,1 +1,8 @@
+.btn {
+  border-radius: 0;
+}
 
+h4,
+p {
+  margin-bottom: 30px;
+}

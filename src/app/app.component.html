@@ -1,12 +1,32 @@
-<h2>Tour Of Heroes</h2>
+<div class="container-sm">
+  <h1 [ngStyle]="{ fontWeight: 'bold', color: '#4B9CD3', marginTop: '20px' }">
+    Tour of Heroes
+  </h1>
 
-<button (click)="dashboardNavigate()">Dahsboard</button>
-<button (click)="heroesListNavigate()">Heroes</button>
+  <button (click)="dashboardNavigate()" class="btn btn-light btn-lg">
+    Dahsboard
+  </button>
+  <button (click)="heroesListNavigate()" class="btn btn-light btn-lg">
+    Heroes
+  </button>
 
-<router-outlet></router-outlet>
-<h2>Messages</h2>
-<ul>
-  <li class="list-group-item" *ngFor="let message of messages">
-    {{ message }}
-  </li>
-</ul>
+  <router-outlet></router-outlet>
+  <hr
+    class="bg-danger border-2 border-top border-danger"
+    [ngStyle]="{ marginTop: '50px' }"
+  />
+
+  <h1 [ngStyle]="{ color: '#f22952', margin: '20px 0px 40px 0px' }">
+    Messages
+  </h1>
+
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let message of messages">
+      {{ message }}
+    </li>
+  </ul>
+
+  <button (click)="clearMessages()" type="button" class="btn btn-dark btn-lg">
+    Clear Messages
+  </button>
+</div>

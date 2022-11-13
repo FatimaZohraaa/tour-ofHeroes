@@ -28,4 +28,9 @@ export class AppComponent {
     this.heroesDataService.addMessage(`fetched heroes`);
     this.messages = this.heroesDataService.messages;
   }
+
+  clearMessages() {
+    this.heroesDataService.clearMessages();
+    this.messages = this.heroesDataService.messages;
+  }
 }
