@@ -15,8 +15,6 @@ export class HeroesDataService {
     { name: 'hero 6', id: '6' },
   ];
 
-  messages = [];
-
   addHero(hero: { name: string; id: string }) {
     this.heroesList = [...this.heroesList, hero];
     console.log(hero);
@@ -32,13 +30,5 @@ export class HeroesDataService {
         hero.name = editedHero.name;
       }
     });
-  }
-
-  addMessage(message: string) {
-    this.messages.push(message);
-  }
-
-  clearMessages() {
-    this.messages = [];
   }
 }
