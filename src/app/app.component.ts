@@ -17,7 +17,7 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
-    this.messages = this.messagesService.messages;
+    this.messages = this.messagesService.getMessages();
   }
   dashboardNavigate() {
     this.router.navigate(['/']);
@@ -27,11 +27,11 @@ export class AppComponent {
   heroesListNavigate() {
     this.router.navigate(['/heroes']);
     this.messagesService.addMessage(`fetched heroes`);
-    this.messages = this.messagesService.messages;
+    this.messages = this.messagesService.getMessages();
   }
 
   clearMessages() {
     this.messagesService.clearMessages();
-    this.messages = this.messagesService.messages;
+    this.messages = this.messagesService.getMessages();
   }
 }

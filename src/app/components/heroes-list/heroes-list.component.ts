@@ -21,13 +21,13 @@ export class HeroesListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.heroesList = this.heroesDataService.heroesList;
+    this.heroesList = this.heroesDataService.getHeroesList();
   }
 
   onDelete(id: string) {
     this.heroesDataService.deleteHero(id);
     this.messagesService.addMessage(`deleted hero id ${id}`);
-    this.heroesList = this.heroesDataService.heroesList;
+    this.heroesList = this.heroesDataService.getHeroesList();
   }
 
   navigateToHero(id: string) {
@@ -36,21 +36,22 @@ export class HeroesListComponent implements OnInit {
   }
 
   onAdd() {
-    if (this.heroesDataService.heroesList.length == 0) {
+    if (this.heroesDataService.getHeroesList().length == 0) {
       this.newId = '1';
     } else {
       this.newId = (
-        +this.heroesDataService.heroesList.slice(-1)[0].id + 1
+        +this.heroesDataService.getHeroesList().slice(-1)[0].id + 1
       ).toString();
     }
     this.heroesDataService.addHero({
       name: this.addHeroForm.value.addedHero,
       id: this.newId,
     });
-    this.heroesList = this.heroesDataService.heroesList;
+    this.heroesList = this.heroesDataService.getHeroesList();
     this.addHeroForm.reset();
     this.messagesService.addMessage(
-      `added hero with id ${+this.heroesDataService.heroesList.slice(-1)[0].id}`
+      `added hero with id ${+this.heroesDataService.getHeroesList().slice(-1)[0]
+        .id}`
     );
   }
 }

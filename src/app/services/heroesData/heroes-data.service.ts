@@ -15,6 +15,10 @@ export class HeroesDataService {
     { name: 'hero 6', id: '6' },
   ];
 
+  getHeroesList() {
+    return this.heroesList;
+  }
+
   addHero(hero: { name: string; id: string }) {
     this.heroesList = [...this.heroesList, hero];
     console.log(hero);

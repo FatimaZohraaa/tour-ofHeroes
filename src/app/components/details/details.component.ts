@@ -26,9 +26,9 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.detailsId = this.activatedRoute.snapshot.paramMap.get('id');
-    this.heroDetails = this.heroesDataService.heroesList.find(
-      (hero) => hero.id == this.detailsId
-    );
+    this.heroDetails = this.heroesDataService
+      .getHeroesList()
+      .find((hero) => hero.id == this.detailsId);
     this.editedName = this.heroDetails.name;
   }
 
@@ -37,7 +37,6 @@ export class DetailsComponent implements OnInit {
   }
 
   onEdit() {
-    console.log(this.editHeroForm.value);
     this.heroesDataService.editHero({
       name: this.editHeroForm.value.heroName,
       id: this.detailsId,

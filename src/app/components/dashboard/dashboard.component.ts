@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   topHeroes = [];
 
   ngOnInit(): void {
-    this.topHeroes = this.heroesDataService.heroesList.slice(-3);
+    this.topHeroes = this.heroesDataService.getHeroesList().slice(-3);
   }
 
   navigateToHero(id: string) {
