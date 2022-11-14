@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HeroesDataService } from '../heroes-data.service';
+import { HeroesDataService } from 'src/app/services/heroesData/heroes-data.service';
 import { Router } from '@angular/router';
-import { MessagesService } from '../messages.service';
+import { MessagesService } from 'src/app/services/messages/messages.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

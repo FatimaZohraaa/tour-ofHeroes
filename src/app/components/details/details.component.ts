@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HeroesDataService } from '../heroes-data.service';
+import { HeroesDataService } from 'src/app/services/heroesData/heroes-data.service';
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
-import { MessagesService } from '../messages.service';
+import { MessagesService } from 'src/app/services/messages/messages.service';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',

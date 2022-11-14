@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HeroesDataService } from '../heroes-data.service';
+import { HeroesDataService } from 'src/app/services/heroesData/heroes-data.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { MessagesService } from '../messages.service';
+import { MessagesService } from 'src/app/services/messages/messages.service';
+
 @Component({
   selector: 'app-heroes-list',
   templateUrl: './heroes-list.component.html',

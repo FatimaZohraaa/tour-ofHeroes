@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MessagesService } from './messages.service';
+import { MessagesService } from './services/messages/messages.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroesListComponent } from './heroes-list/heroes-list.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DetailsComponent } from './details/details.component';
+import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DetailsComponent } from './components/details/details.component';
 
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
