@@ -15,19 +15,35 @@ export class HeroesDataService {
     { name: 'hero 6', id: '6' },
   ];
 
+  /**
+   * Returns the list of heroes
+   * @returns {list} - List of heroes
+   */
   getHeroesList() {
     return this.heroesList;
   }
 
+  /**
+   * Adds a new hero to the list of heroes
+   * @param {object} hero  - object containing the new hero details
+   */
   addHero(hero: { name: string; id: string }) {
     this.heroesList = [...this.heroesList, hero];
     console.log(hero);
   }
 
+  /**
+   * Deletes hero with selected id from the list of heroes
+   * @param {string} id - id of the hero to delete
+   */
   deleteHero(id: string) {
     this.heroesList = this.heroesList.filter((hero) => hero.id !== id);
   }
 
+  /**
+   * Updates the details of the hero in the list of heroes
+   * @param {object} editedHero - object containing updated details of the edited hero
+   */
   editHero(editedHero: { name: string; id: string }) {
     this.heroesList.map((hero) => {
       if (hero.id == editedHero.id) {

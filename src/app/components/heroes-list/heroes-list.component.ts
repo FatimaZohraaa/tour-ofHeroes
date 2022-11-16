@@ -21,21 +21,43 @@ export class HeroesListComponent implements OnInit {
     private messagesService: MessagesService
   ) {}
 
+  /**
+   * When the component is initialized
+   * Gets the heroes list from the heroesData service
+   */
   ngOnInit(): void {
     this.heroesList = this.heroesDataService.getHeroesList();
   }
 
+  /**
+   * When the 'Delete' icon is clicked
+   * Deletes hero selected by id
+   * Adds a message that " a hero with id:'' was deleted" to the list of messages
+   * @param {string} id - id of the hero to delete
+   */
   onDelete(id: string) {
     this.heroesDataService.deleteHero(id);
     this.messagesService.addMessage(`deleted hero id ${id}`);
     this.heroesList = this.heroesDataService.getHeroesList();
   }
 
+  /**
+   * When a hero's tab is clicked
+   * Navigates to the details page of the hero selected
+   * Adds a message that "a hero with id='' was fetched" to the list of messages
+   * @param {String} id - Id of the hero to navigate to
+   */
   navigateToHero(id: string) {
     this.router.navigate([`./heroes/hero/${id}`]);
     this.messagesService.addMessage(`fetched hero id ${id}`);
   }
 
+  /**
+   * When the 'Add Hero' button is clicked
+   * Adds the new hero's details to the list
+   * Resets the form
+   * Adds a message that " a new hero with id='' has been added" to the list of messages
+   */
   onAdd() {
     if (this.heroesDataService.getHeroesList().length == 0) {
       this.newId = '1';

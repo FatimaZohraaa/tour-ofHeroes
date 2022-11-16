@@ -24,6 +24,12 @@ export class DetailsComponent implements OnInit {
   public heroDetails: { name: string; id: string };
   public editedName: string;
 
+  /**
+   * when the component is initialized
+   * gets the id of the selected hero from the URL
+   * gets the hero details from the list of heroes
+   * stores the name of the hero in a variable
+   */
   ngOnInit(): void {
     this.detailsId = this.activatedRoute.snapshot.paramMap.get('id');
     this.heroDetails = this.heroesDataService
@@ -32,10 +38,20 @@ export class DetailsComponent implements OnInit {
     this.editedName = this.heroDetails.name;
   }
 
+  /**
+   * When the 'Back' button is clicked
+   * Navigates back to the previous page
+   */
   navigateBack() {
     this.location.back();
   }
 
+  /**
+   * When the 'Save' button is clicked
+   * Edits the hero's details
+   * Adds a message that "hero with id='' was updated" to the list of messages
+   * Navigates back to the previous page
+   */
   onEdit() {
     this.heroesDataService.editHero({
       name: this.editHeroForm.value.heroName,
