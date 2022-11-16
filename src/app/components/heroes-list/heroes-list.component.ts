@@ -11,8 +11,9 @@ import { MessagesService } from 'src/app/services/messages/messages.service';
 })
 export class HeroesListComponent implements OnInit {
   @ViewChild('f') addHeroForm: NgForm;
-  heroesList: { name: string; id: string }[] = [];
-  newId: string;
+
+  public heroesList: { name: string; id: string }[] = [];
+  private newId: string;
 
   constructor(
     private heroesDataService: HeroesDataService,

@@ -20,9 +20,9 @@ export class DetailsComponent implements OnInit {
     private messagesService: MessagesService
   ) {}
 
-  detailsId: string;
-  heroDetails: { name: string; id: string };
-  editedName: string;
+  public detailsId: string;
+  public heroDetails: { name: string; id: string };
+  public editedName: string;
 
   ngOnInit(): void {
     this.detailsId = this.activatedRoute.snapshot.paramMap.get('id');
