@@ -17,15 +17,16 @@ export class AppComponent {
   ) {}
 
   /**
-   * when the component is initialized
-   * gets the list of messages to display
+   * When the component is initialized
+   * Gets the list of messages to display
    */
   ngOnInit() {
     this.messages = this.messagesService.getMessages();
   }
 
   /**
-   * navigates to the dashboard page when the 'Dashboard' button is clicked
+   * When the 'Dashboard' button is clicked
+   * Navigates to the dashboard page
    */
   dashboardNavigate() {
     this.router.navigate(['/']);
@@ -33,7 +34,8 @@ export class AppComponent {
   }
 
   /**
-   * navigates to the heroesList page when the 'Heroes' button is clicked
+   * When the 'Heroes' button is clicked
+   * Navigates to the heroesList page
    */
   heroesListNavigate() {
     this.router.navigate(['/heroes']);
@@ -42,7 +44,8 @@ export class AppComponent {
   }
 
   /**
-   * clears the list of messages when the 'Clear All' button is clicked
+   * When the 'Clear All' button is clicked
+   * Clears the list of messages
    */
   clearMessages() {
     this.messagesService.clearMessages();
