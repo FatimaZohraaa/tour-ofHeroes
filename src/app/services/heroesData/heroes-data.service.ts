@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class HeroesDataService {
   constructor() {}
 
-  heroesList = [
+  heroesList: { name: string; id: string }[] = [
     { name: 'hero 1', id: '1' },
     { name: 'hero 2', id: '2' },
     { name: 'hero 3', id: '3' },

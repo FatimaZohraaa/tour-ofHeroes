@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
     private messagesService: MessagesService
   ) {}
 
-  topHeroes = [];
+  topHeroes: { name: string; id: string }[] = [];
 
   ngOnInit(): void {
     this.topHeroes = this.heroesDataService.getHeroesList().slice(-3);

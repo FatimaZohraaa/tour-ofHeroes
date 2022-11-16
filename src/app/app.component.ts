@@ -8,8 +8,8 @@ import { MessagesService } from './services/messages/messages.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'tour-of-heroes';
-  messages = [];
+  title: string = 'tour-of-heroes';
+  messages: string[] = [];
 
   constructor(
     private router: Router,
