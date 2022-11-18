@@ -6,13 +6,10 @@ import { Injectable } from '@angular/core';
 export class HeroesDataService {
   constructor() {}
 
-  private heroesList: { name: string; id: string }[] = [
+  heroesList: { name: string; id: string }[] = [
     { name: 'hero 1', id: '1' },
     { name: 'hero 2', id: '2' },
     { name: 'hero 3', id: '3' },
-    { name: 'hero 4', id: '4' },
-    { name: 'hero 5', id: '5' },
-    { name: 'hero 6', id: '6' },
   ];
 
   /**
@@ -29,7 +26,6 @@ export class HeroesDataService {
    */
   addHero(hero: { name: string; id: string }) {
     this.heroesList = [...this.heroesList, hero];
-    console.log(hero);
   }
 
   /**
