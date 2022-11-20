@@ -4,7 +4,6 @@ import { HeroesDataService } from 'src/app/services/heroesData/heroes-data.servi
 import { Location } from '@angular/common';
 import { NgForm } from '@angular/forms';
 import { MessagesService } from 'src/app/services/messages/messages.service';
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -31,7 +30,7 @@ export class DetailsComponent implements OnInit {
    * stores the name of the hero in a variable
    */
   ngOnInit(): void {
-    this.detailsId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.detailsId = this.activatedRoute.snapshot.paramMap.get('id') || '1';
     this.heroDetails = this.heroesDataService
       .getHeroesList()
       .find((hero) => hero.id == this.detailsId);
@@ -58,7 +57,6 @@ export class DetailsComponent implements OnInit {
       id: this.detailsId,
     });
     this.messagesService.addMessage(`updated hero id ${this.detailsId}`);
-
     this.navigateBack();
   }
 }

@@ -27,4 +27,9 @@ describe('MessagesService', () => {
     expect(messagesList.length).toEqual(initialLengthOfList + 1);
     expect(messagesList.indexOf(messageToAdd)).not.toEqual(-1);
   });
+
+  it('should clear messages', () => {
+    messagesService.clearMessages();
+    expect(messagesService.getMessages().length).toEqual(0);
+  });
 });
