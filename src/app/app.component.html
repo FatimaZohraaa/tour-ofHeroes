@@ -3,10 +3,18 @@
     Tour of Heroes
   </h1>
 
-  <button (click)="dashboardNavigate()" class="btn btn-light btn-lg">
+  <button
+    (click)="dashboardNavigate()"
+    class="btn btn-light btn-lg"
+    id="dashboardButton"
+  >
     Dahsboard
   </button>
-  <button (click)="heroesListNavigate()" class="btn btn-light btn-lg">
+  <button
+    (click)="heroesListNavigate()"
+    class="btn btn-light btn-lg"
+    id="heroesButton"
+  >
     Heroes
   </button>
 
@@ -26,7 +34,12 @@
     </li>
   </ul>
 
-  <button (click)="clearMessages()" type="button" class="btn btn-dark btn-lg">
+  <button
+    (click)="clearMessages()"
+    type="button"
+    class="btn btn-dark btn-lg"
+    id="clearAllButton"
+  >
     Clear Messages
   </button>
 </div>

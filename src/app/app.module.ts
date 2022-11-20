@@ -11,7 +11,7 @@ import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'heroes', component: HeroesListComponent },
   { path: 'heroes/hero/:id', component: DetailsComponent },

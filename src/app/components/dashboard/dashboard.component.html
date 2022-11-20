@@ -1,8 +1,13 @@
 <h4>Top Heroes</h4>
-<div class="btn-group" role="group" aria-label="Basic example">
+<div
+  class="btn-group"
+  role="group"
+  aria-label="Basic example"
+  id="topHeroesDiv"
+>
   <button
     type="button"
-    class="btn btn-light btn-lg"
+    class="btn btn-light btn-lg topHeroButton"
     *ngFor="let hero of topHeroes"
     (click)="navigateToHero(hero.id)"
   >
