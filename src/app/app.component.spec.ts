@@ -43,35 +43,36 @@ describe('AppComponent', () => {
     expect(messagesService.getMessages()).toEqual(appComponent.messages);
   });
 
-  it('should display messages', () => {
-    let compiled = fixture.debugElement.nativeElement;
-    fixture.detectChanges();
-    appComponent.messages.forEach((message) => {
-      expect(compiled.querySelector('ul').textContent).toContain(message);
-    });
-  });
-
   it('should call dashboardNavigate() when "dashboard" button is clicked', fakeAsync(() => {
+    //given
     spyOn(appComponent, 'dashboardNavigate');
-    fixture.detectChanges();
-    let button =
+    const button: HTMLButtonElement =
       fixture.debugElement.nativeElement.querySelector('#dashboardButton');
+
+    //when
     button.click();
     tick();
+
+    //then
     expect(appComponent.dashboardNavigate).toHaveBeenCalled();
   }));
 
   it('should navigate to "./"', fakeAsync(() => {
+    //when
     router.navigate(['/']).then(() => {
       expect(location.path()).toBe('/');
     });
   }));
 
   it('should add a message to messages service when dashboardNavigate() is called', () => {
-    let initialNumberOfMessages = messagesService.getMessages().length;
-    fixture.detectChanges();
+    //given
+    const initialNumberOfMessages: number =
+      messagesService.getMessages().length;
+    //when
     appComponent.dashboardNavigate();
     fixture.detectChanges();
+
+    //then
     expect(
       messagesService.getMessages().indexOf('fetched dashboard')
     ).not.toEqual(-1);
@@ -81,25 +82,36 @@ describe('AppComponent', () => {
   });
 
   it('should call heroesListNavigate() when "heroes" button is clicked  ', fakeAsync(() => {
+    //given
     spyOn(appComponent, 'heroesListNavigate');
-    let button =
+    const button: HTMLButtonElement =
       fixture.debugElement.nativeElement.querySelector('#heroesButton');
+
+    //when
     button.click();
     tick();
+
+    //then
     expect(appComponent.heroesListNavigate).toHaveBeenCalled();
   }));
 
   it('should navigate to "./heroes"', fakeAsync(() => {
+    //when
     router.navigate(['/heroes']).then(() => {
       expect(location.path()).toBe('/heroes');
     });
   }));
 
   it('should add a message to the messages service when heroesListNavigate() is called  ', () => {
-    let initialNumberOfMessages = messagesService.getMessages().length;
-    fixture.detectChanges();
+    //given
+    const initialNumberOfMessages: number =
+      messagesService.getMessages().length;
+
+    //when
     appComponent.heroesListNavigate();
     fixture.detectChanges();
+
+    //then
     expect(messagesService.getMessages().indexOf('fetched heroes')).not.toEqual(
       -1
     );
@@ -109,27 +121,37 @@ describe('AppComponent', () => {
   });
 
   it('should call clearMessages() when "clear all" button is clicked', fakeAsync(() => {
+    //given
     spyOn(appComponent, 'clearMessages');
-    fixture.detectChanges();
-    let button =
+    const button: HTMLButtonElement =
       fixture.debugElement.nativeElement.querySelector('#clearAllButton');
+
+    //when
     button.click();
     tick();
+
+    //then
     expect(appComponent.clearMessages).toHaveBeenCalled();
   }));
 
   it('should clear all messages from messages service when clearAll() is called', () => {
-    fixture.detectChanges();
+    //when
     appComponent.clearMessages();
     fixture.detectChanges();
+
+    //then
     expect(appComponent.messages.length).toEqual(0);
   });
 
   it('should clear messages from the view when the clearMessages() is called', fakeAsync(() => {
-    let compiled = fixture.debugElement.nativeElement;
-    fixture.detectChanges();
+    //given
+    const compiled: HTMLElement = fixture.debugElement.nativeElement;
+
+    //when
     appComponent.clearMessages();
     fixture.detectChanges();
+
+    //then
     expect(appComponent.messages).toEqual([]);
     expect(compiled.querySelector('ul').textContent).toEqual('');
   }));

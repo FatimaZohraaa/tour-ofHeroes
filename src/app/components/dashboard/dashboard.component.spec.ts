@@ -32,9 +32,7 @@ describe('DashboardComponent', () => {
     dashboardComponent = fixture.componentInstance;
     heroesDataService = fixture.debugElement.injector.get(HeroesDataService);
     messagesService = fixture.debugElement.injector.get(MessagesService);
-
     fixture.detectChanges();
-
     router = TestBed.get(Router);
     location = TestBed.get(Location);
     router.initialNavigation();
@@ -50,37 +48,41 @@ describe('DashboardComponent', () => {
     );
   });
 
-  it('should display names of top three heroes', () => {
-    let compiled = fixture.debugElement.nativeElement;
-    dashboardComponent.topHeroes.forEach((hero) =>
-      expect(compiled.querySelector('#topHeroesDiv').textContent).toContain(
-        hero.name
-      )
-    );
-  });
-
   it('should call navigateToHero() when topHeroButton is clicked', fakeAsync(() => {
+    //given
     spyOn(dashboardComponent, 'navigateToHero');
-    let button =
+    const button: HTMLButtonElement =
       fixture.debugElement.nativeElement.querySelector('.topHeroButton');
+
+    //when
     button.click();
     tick();
+
+    //then
     expect(dashboardComponent.navigateToHero).toHaveBeenCalled();
   }));
 
   it("should navigate to hero's details when navigateToHero() is called", fakeAsync(() => {
+    //when
     router.navigate(['/heroes/hero/1']).then(() => {
       expect(location.path()).toBe('/heroes/hero/1');
     });
   }));
 
   it('should add a message "fetched hero id="" " when navigateToHero() is called', () => {
-    let initialLNumberOfMessages = messagesService.getMessages().length;
+    //given
+    const initialLNumberOfMessages: number =
+      messagesService.getMessages().length;
+
+    //when
     dashboardComponent.navigateToHero('1');
     fixture.detectChanges();
+
+    //then
     expect(
       messagesService.getMessages().indexOf('fetched hero id 1')
     ).not.toEqual(-1);
+
     expect(messagesService.getMessages().length).toEqual(
       initialLNumberOfMessages + 1
     );

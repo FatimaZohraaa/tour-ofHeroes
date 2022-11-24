@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 import { appRoutes } from '../../app.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Location } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormsModule } from '@angular/forms';
 
 describe('DetailsComponent', () => {
   let detailsComponent: DetailsComponent;
@@ -47,103 +47,133 @@ describe('DetailsComponent', () => {
   });
 
   it('should display the name of hero in title/input', () => {
-    let heroName = detailsComponent.editHeroForm.form.controls['heroName'];
-    let editInput =
-      fixture.debugElement.nativeElement.querySelector('#editHeroInput');
-    let heroNameDisplay =
-      fixture.debugElement.nativeElement.querySelector('#heroNameDisplay');
-
-    expect(editInput.value).toEqual(heroName.value);
-    expect(heroNameDisplay.textContent).toContain(heroName.value);
+    const heroName: AbstractControl =
+      detailsComponent.editHeroForm.form.controls['heroName'];
     expect(detailsComponent.editedName).toEqual(heroName.value);
   });
 
   it('should display id of hero', () => {
-    let compiled = fixture.debugElement.nativeElement;
+    const compiled: HTMLElement = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('#detailsHeroId').textContent).toContain(
       detailsComponent.detailsId
     );
   });
 
   it('should disable the save button if input is equal to initial name', fakeAsync(() => {
+    //given
+    const saveButton: HTMLButtonElement =
+      fixture.nativeElement.querySelector('#saveButton');
+
+    //when
     detailsComponent.editHeroForm.form.controls['heroName'].setValue(
       detailsComponent.heroDetails.name
     );
-    let saveButton = fixture.nativeElement.querySelector('#saveButton');
     fixture.detectChanges();
+
+    //then
     expect(saveButton.disabled).toBeTruthy();
   }));
 
   it('should disable the save button if input is empty', () => {
+    //given
+    const saveButton: HTMLButtonElement =
+      fixture.nativeElement.querySelector('#saveButton');
+
+    //when
     detailsComponent.editHeroForm.form.controls['heroName'].setValue('');
-    let saveButton = fixture.nativeElement.querySelector('#saveButton');
     fixture.detectChanges();
+
+    //then
     expect(saveButton.disabled).toBeTruthy();
     expect(detailsComponent.editHeroForm.valid).toBeFalsy();
   });
 
   it('should display message "Please Enter a valid Name !" when input is empty', () => {
+    //when
     detailsComponent.editHeroForm.form.controls['heroName'].setValue('');
     fixture.detectChanges();
-    let validNameSpan = fixture.nativeElement.querySelector(
+
+    //given
+    const validNameSpan: HTMLSpanElement = fixture.nativeElement.querySelector(
       '#enterValidNameSpan'
     );
-    fixture.detectChanges();
+
+    //then
     expect(validNameSpan.textContent).toContain('Please Enter a valid Name !');
   });
 
   it('should not display message "Please Enter a valid Name !" when input is not empty', () => {
+    //when
     detailsComponent.editHeroForm.form.controls['heroName'].setValue('test');
     fixture.detectChanges();
-    let validNameSpan = fixture.nativeElement.querySelector(
+
+    //given
+    const validNameSpan: HTMLSpanElement = fixture.nativeElement.querySelector(
       '#enterValidNameSpan'
     );
-    fixture.detectChanges();
+
+    //then
     expect(validNameSpan).toBeFalsy();
   });
 
-  it('should enable save button if input is not empty and not equal to initial name', () => {
-    let saveButton = fixture.nativeElement.querySelector('#saveButton');
-    if (
-      detailsComponent.editHeroForm.form.controls['heroName'].value !== '' &&
-      detailsComponent.editHeroForm.form.controls['heroName'].value !==
-        detailsComponent.heroDetails.name
-    ) {
-      fixture.detectChanges();
-      expect(saveButton.disabled).toBeFalsy();
-      expect(detailsComponent.editHeroForm.valid).toBeTruthy();
-    }
+  it('should enable save button if input is not empty and not equal to initial value', () => {
+    //given
+    const saveButton: HTMLButtonElement =
+      fixture.nativeElement.querySelector('#saveButton');
+
+    //when
+    detailsComponent.editHeroForm.form.controls['heroName'].setValue('abcd');
+    fixture.detectChanges();
+
+    //then
+    expect(saveButton.disabled).toBeFalsy();
+    expect(detailsComponent.editHeroForm.valid).toBeTruthy();
   });
 
   it('should call onEdit() when "save" button is clicked', fakeAsync(() => {
+    //given
+    const button: HTMLButtonElement =
+      fixture.nativeElement.querySelector('#saveButton');
+    //when
     detailsComponent.editHeroForm.form.controls['heroName'].setValue('hero');
     fixture.detectChanges();
     spyOn(detailsComponent, 'onEdit');
-    let button = fixture.nativeElement.querySelector('#saveButton');
     button.click();
     tick();
+
+    //then
     expect(detailsComponent.onEdit).toHaveBeenCalled();
   }));
 
   it('should edit hero on the service when onEdit() is called', () => {
+    //given
     detailsComponent.editHeroForm.value.heroName = 'hero 1 v2';
     detailsComponent.detailsId = '1';
-    fixture.detectChanges();
-    detailsComponent.onEdit();
-    fixture.detectChanges();
-    let editedHero = heroesDataService
+    const editedHero: { name: string; id: string } = heroesDataService
       .getHeroesList()
       .find((hero) => (hero.id = detailsComponent.detailsId));
+
+    //when
+    detailsComponent.onEdit();
+    fixture.detectChanges();
+
+    //then
     expect(editedHero.name).toEqual(
       detailsComponent.editHeroForm.value.heroName
     );
   });
 
   it('should add a message "updated hero id="" " when onEdit() is called', () => {
-    let initialLNumberOfMessages = messagesService.getMessages().length;
+    //given
+    const initialLNumberOfMessages: number =
+      messagesService.getMessages().length;
     detailsComponent.detailsId = '5';
+
+    //when
     detailsComponent.onEdit();
     fixture.detectChanges();
+
+    //then
     expect(
       messagesService.getMessages().indexOf('updated hero id 5')
     ).not.toEqual(-1);
@@ -153,10 +183,17 @@ describe('DetailsComponent', () => {
   });
 
   it('should call navigateBack() "back" button is clicked', fakeAsync(() => {
+    //given
+    const button: HTMLButtonElement = fixture.nativeElement.querySelector(
+      '#navigateBackButton'
+    );
     spyOn(detailsComponent, 'navigateBack');
-    let button = fixture.nativeElement.querySelector('#navigateBackButton');
+
+    //when
     button.click();
     tick();
+
+    //then
     expect(detailsComponent.navigateBack).toHaveBeenCalled();
   }));
 
