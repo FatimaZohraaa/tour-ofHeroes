@@ -46,19 +46,6 @@ describe('DetailsComponent', () => {
     expect(detailsComponent).toBeTruthy();
   });
 
-  it('should display the name of hero in title/input', () => {
-    const heroName: AbstractControl =
-      detailsComponent.editHeroForm.form.controls['heroName'];
-    expect(detailsComponent.editedName).toEqual(heroName.value);
-  });
-
-  it('should display id of hero', () => {
-    const compiled: HTMLElement = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('#detailsHeroId').textContent).toContain(
-      detailsComponent.detailsId
-    );
-  });
-
   it('should disable the save button if input is equal to initial name', fakeAsync(() => {
     //given
     const saveButton: HTMLButtonElement =
@@ -86,34 +73,6 @@ describe('DetailsComponent', () => {
     //then
     expect(saveButton.disabled).toBeTruthy();
     expect(detailsComponent.editHeroForm.valid).toBeFalsy();
-  });
-
-  it('should display message "Please Enter a valid Name !" when input is empty', () => {
-    //when
-    detailsComponent.editHeroForm.form.controls['heroName'].setValue('');
-    fixture.detectChanges();
-
-    //given
-    const validNameSpan: HTMLSpanElement = fixture.nativeElement.querySelector(
-      '#enterValidNameSpan'
-    );
-
-    //then
-    expect(validNameSpan.textContent).toContain('Please Enter a valid Name !');
-  });
-
-  it('should not display message "Please Enter a valid Name !" when input is not empty', () => {
-    //when
-    detailsComponent.editHeroForm.form.controls['heroName'].setValue('test');
-    fixture.detectChanges();
-
-    //given
-    const validNameSpan: HTMLSpanElement = fixture.nativeElement.querySelector(
-      '#enterValidNameSpan'
-    );
-
-    //then
-    expect(validNameSpan).toBeFalsy();
   });
 
   it('should enable save button if input is not empty and not equal to initial value', () => {

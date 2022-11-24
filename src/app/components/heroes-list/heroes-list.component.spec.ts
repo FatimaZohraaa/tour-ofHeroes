@@ -52,14 +52,6 @@ describe('HeroesListComponent', () => {
       heroesDataService.getHeroesList()
     );
   });
-  it('should display list of heros', () => {
-    const compiled: HTMLElement = fixture.nativeElement;
-    heroesDataService.getHeroesList().forEach((hero) => {
-      expect(compiled.querySelector('#heroes-list').textContent).toContain(
-        hero.name
-      );
-    });
-  });
 
   it('should call navigateToHero() when "heroTab" is clicked', fakeAsync(() => {
     //given
