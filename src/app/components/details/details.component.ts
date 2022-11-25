@@ -51,6 +51,7 @@ export class DetailsComponent implements OnInit {
    * Adds a message that "hero with id='' was updated" to the list of messages
    * Navigates back to the previous page
    */
+
   onEdit() {
     this.heroesDataService.editHero({
       name: this.editHeroForm.value.heroName,

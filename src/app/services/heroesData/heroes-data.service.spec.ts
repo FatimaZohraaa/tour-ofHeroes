@@ -42,7 +42,10 @@ describe('HeroesDataService', () => {
 
   it('it should edit a hero', () => {
     const heroToEdit = heroesList[0];
-    heroesDataService.editHero({ name: 'editedName', id: heroToEdit.id });
+    heroesDataService.editHero({
+      name: 'editedName',
+      id: heroToEdit.id,
+    });
     heroesList = heroesDataService.getHeroesList();
     expect(heroesList[0].name).toEqual('editedName');
     expect(heroesList.length).toEqual(initialLengthOfList);
